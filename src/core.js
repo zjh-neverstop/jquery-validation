@@ -626,6 +626,14 @@ $.extend( $.validator, {
 
 					if ( !result ) {
 						this.formatAndAdd( element, rule );
+						
+						//调用控件上注册的验证失败回调函数
+						if ("invalidEventForElement" in this.settings) {
+			                            if (element.id in this.settings.invalidEventForElement) {
+			                                this.settings.invalidEventForElement[element.id].fail();
+			                            }
+			                        }
+			                            
 						return false;
 					}
 				} catch ( e ) {
@@ -641,6 +649,14 @@ $.extend( $.validator, {
 			if ( this.objectLength( rules ) ) {
 				this.successList.push( element );
 			}
+			
+			////调用控件上注册的验证成功回调函数
+			if ("invalidEventForElement" in this.settings) {
+	                    if (element.id in this.settings.invalidEventForElement) {
+	                        this.settings.invalidEventForElement[element.id].success();
+	                    }
+	                }
+	                
 			return true;
 		},
 
