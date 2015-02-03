@@ -1,3 +1,5 @@
+[给jquery-validation插件添加控件的验证回调方法](http://www.cnblogs.com/neverstop/p/4022344.html)
+
 [jQuery Validation Plugin](http://jqueryvalidation.org/) - Form validation made easy
 ================================
 
