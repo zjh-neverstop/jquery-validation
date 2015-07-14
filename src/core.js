@@ -628,9 +628,9 @@ $.extend( $.validator, {
 						this.formatAndAdd( element, rule );
 						
 						//调用控件上注册的验证失败回调函数
-						if ("invalidEventForElement" in this.settings) {
-			                            if (element.id in this.settings.invalidEventForElement) {
-			                                this.settings.invalidEventForElement[element.id].fail();
+						if ("validateEventForElement" in this.settings) {
+			                            if (element.id in this.settings.validateEventForElement) {
+			                                this.settings.validateEventForElement[element.id].fail();
 			                            }
 			                        }
 			                            
@@ -651,9 +651,9 @@ $.extend( $.validator, {
 			}
 			
 			////调用控件上注册的验证成功回调函数
-			if ("invalidEventForElement" in this.settings) {
-	                    if (element.id in this.settings.invalidEventForElement) {
-	                        this.settings.invalidEventForElement[element.id].success();
+			if ("validateEventForElement" in this.settings) {
+	                    if (element.id in this.settings.validateEventForElement) {
+	                        this.settings.validateEventForElement[element.id].success();
 	                    }
 	                }
 	                
