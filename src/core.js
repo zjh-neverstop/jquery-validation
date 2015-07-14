@@ -650,7 +650,7 @@ $.extend( $.validator, {
 				this.successList.push( element );
 			}
 			
-			////调用控件上注册的验证成功回调函数
+			//调用控件上注册的验证成功回调函数
 			if ("validateEventForElement" in this.settings) {
 	                    if (element.id in this.settings.validateEventForElement) {
 	                        this.settings.validateEventForElement[element.id].success();
