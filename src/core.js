@@ -629,10 +629,10 @@ $.extend( $.validator, {
 						
 						//调用控件上注册的验证失败回调函数
 						if ("validateEventForElement" in this.settings) {
-			                            if (element.id in this.settings.validateEventForElement) {
-			                                this.settings.validateEventForElement[element.id].fail();
-			                            }
-			                        }
+			                if (element.id in this.settings.validateEventForElement) {
+			                    this.settings.validateEventForElement[element.id].fail();
+			                }
+			            }
 			                            
 						return false;
 					}
@@ -652,10 +652,10 @@ $.extend( $.validator, {
 			
 			//调用控件上注册的验证成功回调函数
 			if ("validateEventForElement" in this.settings) {
-	                    if (element.id in this.settings.validateEventForElement) {
-	                        this.settings.validateEventForElement[element.id].success();
-	                    }
-	                }
+	             if (element.id in this.settings.validateEventForElement) {
+	                 this.settings.validateEventForElement[element.id].success();
+	             }
+	         }
 	                
 			return true;
 		},
@@ -1303,12 +1303,26 @@ $.extend( $.validator, {
 						validator.successList.push( element );
 						delete validator.invalid[ element.name ];
 						validator.showErrors();
+						
+						//调用控件上注册的验证成功回调函数
+						if ("validateEventForElement" in validator.settings) {
+				             if (element.id in validator.settings.validateEventForElement) {
+				                 validator.settings.validateEventForElement[element.id].success();
+				             }
+				         }
 					} else {
 						errors = {};
 						message = response || validator.defaultMessage( element, "remote" );
 						errors[ element.name ] = previous.message = $.isFunction( message ) ? message( value ) : message;
 						validator.invalid[ element.name ] = true;
 						validator.showErrors( errors );
+						
+						//调用控件上注册的验证失败回调函数
+						if ("validateEventForElement" in validator.settings) {
+			                if (element.id in validator.settings.validateEventForElement) {
+			                    validator.settings.validateEventForElement[element.id].fail();
+			                }
+			            }
 					}
 					previous.valid = valid;
 					validator.stopRequest( element, valid );
